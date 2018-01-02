@@ -7,7 +7,7 @@ for path in */ ; do
     [ -f "${path}/Dockerfile" ] || continue # ...or if there's no Dockerfile
     REPO="$DOCKER_HUB_USR/$(basename "${path}")"
     cd "${path}/"
-    docker build --latest -t $REPO:$TAG -f Dockerfile .
+    docker build --pull -t $REPO:$TAG -f Dockerfile .
     docker login -u $DOCKER_HUB_USR -p $DOCKER_HUB_PSW
     if [ ${BRANCH_NAME} == "master" ]; then
         docker tag $REPO:$TAG $REPO:latest

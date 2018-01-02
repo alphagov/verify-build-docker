@@ -1,16 +1,17 @@
 pipeline {
-   agent none
-   stages {
-       stage('Build and Push') {
-           when { branch 'master' }
-           agent any
-           environment {
-             DOCKER_HUB=credentials('dockerhub-govukverify')
-           }
-           steps {
-             sh './build.sh'
-           }
-       }
-   }
+    agent any
+    triggers {
+        cron('H H * * 1-5')
+     }
+    stages {
+        stage('Build and Push') {
+            environment {
+              DOCKER_HUB=credentials('dockerhub-govukverify')
+            }
+            steps {
+              sh './build.sh'
+            }
+        }
+    }
 }
        
