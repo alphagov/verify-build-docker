@@ -13,4 +13,8 @@ RUN apt-get update &&\
     apt-get -qq install ida-fabric --force-yes &&\
     apt-get clean
 
+RUN mkdir /script
+COPY upload_to_aptly.sh /script/.
+RUN chmod +x /script/upload_to_aptly.sh
+
 RUN mkdir /root/.ssh
