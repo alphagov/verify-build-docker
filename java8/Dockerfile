@@ -12,4 +12,5 @@ RUN apt-get update &&\
     apt-get clean &&\ 
     find / -type f -name 'jdk-8u151-linux-x64.tar.gz' -delete &&\
     ls -latR /var/cache
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 CMD ["/bin/bash"]
