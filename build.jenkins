@@ -5,6 +5,9 @@ pipeline {
      }
     stages {
         stage('Build and Push') {
+            when {
+              brnach 'master'
+            }
             environment {
               DOCKER_HUB=credentials('dockerhub-govukverify')
             }
