@@ -6,4 +6,4 @@ The `build.sh` script will iterate through each subdirectory and build a Docker 
 
 **NOTE:** These images are world-readable on the Docker Hub, so you **must not** include any secret data within them.
 
-Jenkins runs this job daily, so that we can quickly incorporate any changes made to the Docker image you specify in your Dockerfile's `FROM` statement.
+Jenkins runs this job daily, so that we can quickly incorporate any changes made to upstream Docker images.
