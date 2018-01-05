@@ -1,8 +1,23 @@
 pipeline {
-    agent any
+
+    // Set some common options - see
+    // https://jenkins.io/doc/book/pipeline/syntax/#options
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 20, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10',
+                                  artifactNumToKeepStr: '1'))
+    }
+
+    // Rebuild our Docker images once each weekday, so that we pick up any
+    // updates to the base layers. For details on using 'H' in the cron spec to
+    // spread the load from timed jobs throughout the day, see
+    // https://stackoverflow.com/a/26384110
     triggers {
         cron('H H * * 1-5')
-     }
+    }
+
+    agent any
     stages {
         stage('Build and Push') {
             environment {
