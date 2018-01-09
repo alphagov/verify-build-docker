@@ -4,7 +4,7 @@ ENV LC_ALL     en_GB.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update &&\
     apt-get upgrade -q -y -o Dpkg::Options::="--force-confnew" &&\
-    apt-get install -q -y --force-yes --no-install-recommends python-software-properties software-properties-common &&\
+    apt-get install -q -y --force-yes --no-install-recommends python-software-properties software-properties-common curl unzip dpkg &&\
     add-apt-repository ppa:webupd8team/java &&\
     apt-get update &&\
     echo $( echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections ) &&\
