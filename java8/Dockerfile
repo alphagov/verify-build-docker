@@ -5,12 +5,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update &&\
     apt-get upgrade -q -y -o Dpkg::Options::="--force-confnew" &&\
     apt-get install -q -y --force-yes --no-install-recommends python-software-properties software-properties-common curl unzip dpkg &&\
-    add-apt-repository ppa:webupd8team/java &&\
+    add-apt-repository ppa:openjdk-r/ppa  &&\
     apt-get update &&\
-    echo $( echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections ) &&\
-    apt-get install -q -y --force-yes --no-install-recommends oracle-java8-installer oracle-java8-set-default &&\
-    apt-get clean &&\ 
-    find / -type f -name 'jdk-8u151-linux-x64.tar.gz' -delete &&\
+    apt-get install -q -y --force-yes --no-install-recommends openjdk-8-jdk &&\
+    apt-get clean &&\
     ls -latR /var/cache
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV JAVA_HOME /usr/lib/jvm/java
 CMD ["/bin/bash"]
