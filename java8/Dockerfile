@@ -10,5 +10,5 @@ RUN apt-get update &&\
     apt-get install -q -y --force-yes --no-install-recommends openjdk-8-jdk &&\
     apt-get clean &&\
     ls -latR /var/cache
-ENV JAVA_HOME /usr/lib/jvm/java
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 CMD ["/bin/bash"]
