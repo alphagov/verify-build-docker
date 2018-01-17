@@ -1,7 +1,7 @@
 #!/bin/bash
 shopt -s nullglob
 REPO="verify-build"
-TAG="${BUILD_NUMBER}"
+TAG="${BRANCH_NAME}.${BUILD_NUMBER}"
 for path in */ ; do
     [ -d "${path}" ]            || continue # Skip if it's not a directory
     [ -f "${path}/Dockerfile" ] || continue # ...or if there's no Dockerfile
